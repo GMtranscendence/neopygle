@@ -11,9 +11,13 @@ class Wigle():
     self.auth()
 
   def search(self, ssid, netid):
+
     try:
       req = self.session.get('https://api.wigle.net/api/v2/network/search', params={'ssid':ssid, 'netid': netid})
-      print(json.dumps(req.json(), indent=2))
+      result = req.json()
+      print(json.dumps(result, indent=2))
+      return result
+
     except (json.decoder.JSONDecodeError):
       print('Something went wrong')
 
